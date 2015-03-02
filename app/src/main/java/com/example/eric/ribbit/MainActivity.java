@@ -1,22 +1,21 @@
 package com.example.eric.ribbit;
 
-import java.util.Locale;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.Locale;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -40,6 +39,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //all activities are started through intents.
+        //The two parameters are (the current context, the class of the activity we want to start)
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  //logging in is a new task
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); //the old task is cleared (the MainActivity)
+        startActivity(intent);//Actually goes to LoginActivity
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
